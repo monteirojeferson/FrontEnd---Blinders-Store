@@ -1,0 +1,104 @@
+/* .fs-16{
+    font-size: 16pt;
+  }
+  
+  .fs-14{
+    font-size: 14pt;
+  }
+  
+  a{
+    cursor: pointer;
+    text-decoration: none;
+  } */
+  /*-------------------- Inicio NAVBAR-------------- */
+
+body {
+  font-family: 'Inter', sans-serif;
+  /* background-image: linear-gradient(to right,rgb(252, 71, 110),rgb(238, 211, 215) ); */
+}
+img{
+  width: 8%;
+}
+nav {
+  background-color: #ecf0f1;
+}
+a{
+  cursor: pointer;
+}
+
+#botao {
+  background-color: #DEF481;
+}
+
+#btBox {
+  background-color: rgb(228, 108, 108);
+  color: white;
+  margin-right: 10px;
+}
+
+#btBox:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+  background-color: rgb(248, 143, 143);
+  transition: ease-in-out color .15s;
+  color: white;
+  text-decoration: none;
+}
+
+.textoNav a {
+  color: black;
+}
+
+.textoNav a:hover {
+  color: rgb(114, 169, 241);
+  text-decoration: none;
+}
+
+.containerM {
+  width: 80%;
+  justify-content: space-around;
+}
+
+.login-canto>button {
+  margin-right: 50px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 576px) {
+  #logo {
+      display: none;
+  }
+  #logo2 {
+      width: 52vw;
+      height: 8vh;
+  }
+}
+
+@media (min-width: 577px) {
+  #logo2 {
+      display: none;
+  }
+}
+
+@media(max-width:750px) {
+  #btBox {
+      display: none;
+      padding: 0;
+  }
+}
+
+@media(min-width: 1439px) {
+  ul>li {
+      font-size: 24px;
+  }
+  #btBox {
+      font-size: 20px;
+  }
+}
+
+
+/* ------------------FINAL NAVBAR ------------------*/

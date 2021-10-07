@@ -1,0 +1,122 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+    <ul class="navbar-nav mr-auto d-flex align-items-center">
+      <li class="nav-item active">
+        <img src="{{foto}}" alt="Imagem do user" width="50px" height="50px" class="img-fluid rounded-circle">
+      </li>
+      <li class="nav-item pl-3">
+        <p class="m-0 font-weight-bold text-white fs-16">Olá, {{nome}}</p>
+      </li>
+
+      <li class="nav-item pl-3">
+        <a [routerLink]="['/user-edit', id]" >
+          <p class="text-white fs-16 m-0"><i class="fa fa-pencil-square-o " aria-hidden="true"></i></p>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto d-flex align-items-center">
+      <li class="nav-item pl-3">
+        <a (click)='sair()' class="m-0 font-weight-bold text-white fs-16">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+      </li>
+    </ul>
+
+  </div>
+</nav> -->
+
+<div class="container-fluid  bg-white shadow">
+  <nav class="navbar navbar-expand-lg navbar-light ">
+
+      
+      <img id="logo" class="btn navbar-brand col-lg-2 col-md-3 col-sm-4 " src="https://i.imgur.com/ZDBH8Pz.png" routerLink="/home" alt="Logo ">
+
+      <img id="logo2" class="btn navbar-brand col-lg-2 col-md-3 col-sm-4" src="https://i.imgur.com/ZDBH8Pz.png" routerLink="/home" alt="Logo ">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+
+      <div class="collapse row navbar-collapse" id="navbarNav">
+
+          <ul class="navbar-nav textoNav col-md-6 " style="font-size: large;">
+
+              <li class="nav-item mr-4">
+                  <a class="nav-link" routerLink="/home">Home</a>
+              </li>
+
+              <li class="nav-item mr-4">
+                  <a class="nav-link" routerLink="/sobre-nos">Sobre</a>
+              </li>
+
+              <li class="nav-item mr-4">
+                  <a class="nav-link" routerLink="/contato">Contato</a>
+              </li>
+              <li class="nav-item mr-4">
+                  <a class="nav-link" routerLink="/produtos">Produtos</a>
+              </li>
+    
+              <li class="nav-item pl-3">
+                <a [routerLink]="['/user-edit', id]" >
+                  <p class="text-white fs-16 m-0"><i class="fa fa-pencil-square-o " aria-hidden="true"></i></p>
+                </a>
+              </li>
+
+          </ul>
+
+          <ul class="navbar-nav textoNav col-md-6 d-flex justify-content-end">
+
+              <!-- <div *ngIf='auth.logado()'>
+                  <li class="nav-item">
+                      <a class="nav-link btn" id="btBox" routerLink="/cadastrar-usuarios">MONTE SUA BOX</a>
+                  </li>
+              </div> -->
+
+
+              <div *ngIf='auth.logado()' style="font-size: large;">
+                <p class="m-0 font-weight-bold ">Olá, {{nome}}</p>
+                  <div >
+                    <ul class="navbar-nav ml-auto d-flex align-items-center">
+                      <li class="nav-item pl-3">
+                        <a (click)='sair()' class="m-0 font-weight-bold fs-16">Sair <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
+              
+
+              <!-- <div class="d-flex align-items-center ">
+                  <a>
+                      <fa-icon [icon]="faShoppingCart" class="fa-1x px-2" aria-disabled="true" data-toggle="modal" data-target="#carrinho-modal" (click)="exibirCarrinho()"></fa-icon>
+                  </a>
+              </div> -->
+
+
+              <!-- <div *ngIf='auth.btnLogin()'>
+                  <li class="nav-item">
+                      <a class="nav-link  " aria-disabled="true" data-toggle="modal" data-target="#exampleModal" (click)="exibirLogin()">Entrar</a>
+                  </li>
+              </div> -->
+
+
+          </ul>
+
+      </div>
+
+  </nav>
+
+
+</div>
+<!-- <div *ngIf="mostrarCarrinho">
+  <app-carrinho></app-carrinho>
+</div>
+<div *ngIf="mostrarLogin">
+  <app-login></app-login>
+</div> -->
+
+<!-- ---------------------------- FIM NAVBAR------------------------------------ -->
