@@ -8,8 +8,10 @@ export class Postagem{
 	
 	public  alterar:string;
 	
-	
+	public preco: number;
+  public qtd: number;
 	public  vizualizar:string;
+  public imagem: string;
   // public titulo: string
   // public texto: string
   public data: Date

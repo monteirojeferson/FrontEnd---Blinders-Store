@@ -44,42 +44,46 @@
 
       <div class="collapse row navbar-collapse" id="navbarNav">
 
-          <ul class="navbar-nav textoNav col-md-6 " style="font-size: large;">
+          <ul class="navbar-nav textoNav col-md-8 " style="font-size: large;">
 
-              <li class="nav-item mr-4">
+              <li class="nav-item mr-5">
                   <a class="nav-link" routerLink="/home">Home</a>
               </li>
 
-              <li class="nav-item mr-4">
+              <li class="nav-item mr-5">
                   <a class="nav-link" routerLink="/sobre-nos">Sobre</a>
               </li>
 
-              <li class="nav-item mr-4">
+              <li class="nav-item mr-5">
                   <a class="nav-link" routerLink="/contato">Contato</a>
               </li>
-              <li class="nav-item mr-4">
+              <li class="nav-item mr-5">
                   <a class="nav-link" routerLink="/produtos">Produtos</a>
               </li>
     
-              <li class="nav-item pl-3">
-                <a [routerLink]="['/user-edit', id]" >
-                  <p class="text-white fs-16 m-0"><i class="fa fa-pencil-square-o " aria-hidden="true"></i></p>
-                </a>
-              </li>
+              
 
           </ul>
 
-          <ul class="navbar-nav textoNav col-md-6 d-flex justify-content-end">
+          <ul class="navbar-nav textoNav col-md-4 d-flex justify-content-end">
 
-              <!-- <div *ngIf='auth.logado()'>
-                  <li class="nav-item">
-                      <a class="nav-link btn" id="btBox" routerLink="/cadastrar-usuarios">MONTE SUA BOX</a>
-                  </li>
-              </div> -->
+    
 
 
               <div *ngIf='auth.logado()' style="font-size: large;">
-                <p class="m-0 font-weight-bold ">Olá, {{nome}}</p>
+                <ul class="navbar-nav mr-auto d-flex align-items-center">
+               
+                  <li class="nav-item pl-3">
+                    <p class="m-0 font-weight-bold ">Olá, {{nome}}</p>
+                  </li>
+            
+                  <li class="nav-item pl-3">
+                    <a [routerLink]="['/user-edit', id]" >
+                      <p class="text-white fs-16 m-0"><i class="fa fa-pencil-square-o " aria-hidden="true"></i></p>
+                    </a>
+                  </li>
+
+                </ul>
                   <div >
                     <ul class="navbar-nav ml-auto d-flex align-items-center">
                       <li class="nav-item pl-3">
@@ -97,11 +101,11 @@
               </div> -->
 
 
-              <!-- <div *ngIf='auth.btnLogin()'>
+              <div *ngIf='!auth.logado()' style="font-size: large;" >
                   <li class="nav-item">
-                      <a class="nav-link  " aria-disabled="true" data-toggle="modal" data-target="#exampleModal" (click)="exibirLogin()">Entrar</a>
+                      <a class="nav-link  " aria-disabled="true" data-toggle="modal" data-target="#exampleModal" routerLink="/entrar" >Entrar</a>
                   </li>
-              </div> -->
+              </div> 
 
 
           </ul>
