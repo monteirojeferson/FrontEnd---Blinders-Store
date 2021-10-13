@@ -28,6 +28,9 @@ export class AuthService {
     return this.http.get<User>(`http://localhost:8080/usuarios/${id}`)
   }
 
+  getAllUsuarios(): Observable<User[]>{
+    return this.http.get<User[]>(`http://localhost:8080/usuarios`)
+  }
 
   logado(){
     let ok: boolean = false

@@ -12,7 +12,7 @@ export class Postagem{
   public qtd: number;
 	public  vizualizar:string;
   public imagem: string;
-  // public titulo: string
+  public descricao: string
   // public texto: string
   public data: Date
   public usuario: User

@@ -21,6 +21,12 @@ import { PostagemDeleteComponent } from './delete/postagem-delete/postagem-delet
 import { PostagemEditComponent } from './edit/postagem-edit/postagem-edit.component';
 import { UserEditComponent } from './edit/user-edit/user-edit.component';
 import { ProdutosComponent } from './produtos/produtos.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import {MatAccordion} from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -47,7 +53,13 @@ import { ProdutosComponent } from './produtos/produtos.component';
     HttpClientModule,
     FormsModule,
     ModalModule.forRoot(),
-    OrderModule
+    OrderModule,
+    BrowserAnimationsModule,
+   // MatAccordion,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule
     
   ],
   providers: [{

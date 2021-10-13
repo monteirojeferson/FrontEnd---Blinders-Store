@@ -16,9 +16,10 @@ export class UserEditComponent implements OnInit {
   idUser: number
   confirmarSenha: string
   tipoUsuario: string
+  listaUsuarios: User [];
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private alertas: AlertasService
@@ -33,6 +34,7 @@ export class UserEditComponent implements OnInit {
 
     this.idUser = this.route.snapshot.params['id']
     this.findByIdUser(this.idUser)
+    this.getAllUsuarios()
   }
 
   confirmSenha(event: any) {
@@ -69,4 +71,11 @@ export class UserEditComponent implements OnInit {
     })
   }
 
+
+  getAllUsuarios(){
+    this.authService.getAllUsuarios().subscribe((resp: User[]) => {
+      this.listaUsuarios = resp
+    })
+  }
+ 
 }

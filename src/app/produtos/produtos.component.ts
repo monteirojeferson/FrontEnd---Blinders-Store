@@ -9,6 +9,7 @@ import { Postagem } from './../model/Postagem';
 import { Router } from '@angular/router';
 import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
+// import { Console } from 'console';
 
 @Component({
   selector: 'app-produtos',
@@ -16,14 +17,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./produtos.component.css']
 })
 export class ProdutosComponent implements OnInit {
+  
+  
 
   postagem: Postagem = new Postagem()
+  produtoSelecionado: Postagem = new Postagem()
   listaPostagens: Postagem[]
   tituloPost: string
 
   tema: Tema = new Tema()
   listaTemas: Tema[]
   idTema: number
+  idPostagem: number
   nomeTema: string
 
   user: User = new User()
@@ -31,6 +36,10 @@ export class ProdutosComponent implements OnInit {
 
   key = 'data'
   reverse = true
+
+  // modal:any;
+
+  
 
   constructor(
     private router: Router,
@@ -43,9 +52,9 @@ export class ProdutosComponent implements OnInit {
   ngOnInit() {
     window.scroll(0,0)
 
-    if(environment.token == ''){
-      this.router.navigate(['/entrar'])
-    }
+    // if(environment.token == ''){
+    //   this.router.navigate(['/entrar'])
+    // }
 
     this.getAllTemas()
     this.getAllPostagens()
@@ -65,6 +74,12 @@ export class ProdutosComponent implements OnInit {
     })
   }
 
+  findByIdPostagem(){
+    this.postagemService.getByIdPostagem(this.idPostagem).subscribe((resp: Postagem) =>{
+      this.postagem = resp
+    })
+  }
+
   getAllPostagens(){
     this.postagemService.getAllPostagens().subscribe((resp: Postagem[]) => {
       this.listaPostagens = resp
@@ -80,6 +95,7 @@ export class ProdutosComponent implements OnInit {
   publicar(){
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
+    this.postagem.id = this.idPostagem
 
     this.user.id = this.idUser
     this.postagem.usuario = this.user
@@ -110,6 +126,12 @@ export class ProdutosComponent implements OnInit {
         this.listaTemas = resp
       })
     }
+  }
+
+  selecionarProduto(item:any){
+    console.log(item)
+    this.produtoSelecionado = item;
+    
   }
 
 }
