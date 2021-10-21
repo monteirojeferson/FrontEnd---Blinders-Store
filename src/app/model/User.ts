@@ -7,5 +7,10 @@ export class User{
   public senha: string
   public foto: string
   public tipo: string
+  public email : string;
+	
+	public endereco : string;
+	
+	public cpf: string;
   public postagem: Postagem[]
 }

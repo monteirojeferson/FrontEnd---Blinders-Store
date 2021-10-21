@@ -36,7 +36,7 @@ export class ProdutosComponent implements OnInit {
 
   key = 'data'
   reverse = true
-
+  nome = environment.nome
   // modal:any;
 
   

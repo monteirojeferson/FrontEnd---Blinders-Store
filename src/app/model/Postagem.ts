@@ -13,7 +13,6 @@ export class Postagem{
 	public  vizualizar:string;
   public imagem: string;
   public descricao: string
-  // public texto: string
   public data: Date
   public usuario: User
   public tema: Tema

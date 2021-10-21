@@ -20,7 +20,24 @@
               <label for="usuario">Usuário</label>
               <input [(ngModel)]='user.usuario' class="form-control" type="text" name="usuario" id="usuario" placeholder="Seu usuário">
             </div>
+
+            <div class="form-group">
+              <label for="usuario">Email</label>
+              <input [(ngModel)]='user.email' class="form-control" type="text" name="email" id="email" placeholder="Seu email">
+            </div>
   
+
+            <div class="form-group">
+              <label for="usuario">CPF</label>
+              <input [(ngModel)]='user.cpf' class="form-control" type="text" name="cpf" id="cpf" placeholder="Seu CPF" maxlength="11">
+            </div>
+
+            <div class="form-group">
+              <label for="usuario">Endereço</label>
+              <input [(ngModel)]='user.endereco' class="form-control" type="text" name="endereco" id="endereco" placeholder="Endereco">
+            </div>
+
+          
             <!-- <div class="form-group">
               <label for="foto">Link da Foto</label>
               <input [(ngModel)]='user.foto' class="form-control" type="text" name="foto" id="foto" placeholder="Link da sua foto">
@@ -43,6 +60,7 @@
                 <option>Selecione um tipo de usuário:</option>
                 <option value="normal">Normal</option>
                 <option value="adm">Administrador</option>
+                <option value="estoquista">Estoquista</option>
               </select>
             </div>
   
