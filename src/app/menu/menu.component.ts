@@ -13,9 +13,14 @@ export class MenuComponent implements OnInit {
 
   
 
-  nome = environment.nome
+ //nome = environment.nome
   foto = environment.foto
   id = environment.id
+
+ // faShoppingCart = faShoppingCart
+  mostrarLogin: boolean=false;
+  mostrarCarrinho: boolean = false;
+  nome: any = localStorage.getItem('nome')
 
   constructor(
     private router: Router,
@@ -32,6 +37,10 @@ export class MenuComponent implements OnInit {
     environment.nome = ''
     environment.foto = ''
     environment.id = 0
+  }
+
+  exibirCarrinho(){
+    this.mostrarCarrinho = true;
   }
 
 }

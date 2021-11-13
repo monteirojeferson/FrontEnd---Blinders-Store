@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Postagem } from 'src/app/model/Postagem';
+import { Produto } from 'src/app/model/Produto';
 import { Tema } from 'src/app/model/Tema';
 import { AlertasService } from 'src/app/service/alertas.service';
-import { PostagemService } from 'src/app/service/postagem.service';
+import { ProdutoService } from 'src/app/service/produtos.service';
 import { TemaService } from 'src/app/service/tema.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
-  selector: 'app-postagem-edit',
-  templateUrl: './postagem-edit.component.html',
-  styleUrls: ['./postagem-edit.component.css']
+  selector: 'app-produto-edit',
+  templateUrl: './produto-edit.component.html',
+  styleUrls: ['./produto-edit.component.css']
 })
-export class PostagemEditComponent implements OnInit {
+export class ProdutoEditComponent implements OnInit {
 
-  postagem: Postagem = new Postagem()
+  produto: Produto = new Produto()
 
   tema: Tema = new Tema()
   listaTemas: Tema[]
@@ -23,7 +23,7 @@ export class PostagemEditComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private postagemService: PostagemService,
+    private produtoService: ProdutoService,
     private temaService: TemaService,
     private alertas: AlertasService
   ) { }
@@ -37,13 +37,13 @@ export class PostagemEditComponent implements OnInit {
     }
 
     let id = this.route.snapshot.params['id']
-    this.findByIdPostagem(id)
+    this.findByIdProduto(id)
     this.findAllTemas()
   }
 
-  findByIdPostagem(id: number){
-    this.postagemService.getByIdPostagem(id).subscribe((resp: Postagem) => {
-      this.postagem = resp
+  findByIdProduto(id: number){
+    this.produtoService.getByIdProduto(id).subscribe((resp: Produto) => {
+      this.produto = resp
     })
   }
 
@@ -61,10 +61,10 @@ export class PostagemEditComponent implements OnInit {
 
   atualizar(){
     this.tema.id = this.idTema
-    this.postagem.tema = this.tema
+    this.produto.tema = this.tema
 
-    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem) => {
-      this.postagem = resp
+    this.produtoService.putProduto(this.produto).subscribe((resp: Produto) => {
+      this.produto = resp
       this.alertas.showAlertSuccess('Aualizada com sucesso!')
       this.router.navigate(['/home'])
     })

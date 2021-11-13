@@ -1,0 +1,46 @@
+<div class="container mb-5 mt-5">
+
+    <div class="row mb-5">
+      <div class="col-md-12">
+        <h1 class="text-center text-secondary">Apagar Endereço</h1>
+      </div>
+    </div>
+  
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <h4 class="text-center text-secondary">Você tem certeza que deseja apagar esse Endereço?</h4>
+      </div>
+    </div>
+  
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <h5 class="text-center text-primary">Endereço: {{endereco.endereco}}</h5>
+      </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12">
+          <h5 class="text-center text-primary">Bairro: {{endereco.bairro}}</h5>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <h5 class="text-center text-primary">CEP: {{endereco.cep}}</h5>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <h5 class="text-center text-primary">Número: {{endereco.numero}}</h5>
+        </div>
+      </div>
+  
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center">
+        <button class="btn btn-danger mr-4" routerLink='/endereco' >Não</button>
+        <button class="btn btn-success" (click)='apagar()'>Sim</button>
+      </div>
+    </div>
+  
+  
+  </div>

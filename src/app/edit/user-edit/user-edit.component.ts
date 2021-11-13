@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Endereco } from 'src/app/model/Endereco';
 import { User } from 'src/app/model/User';
 import { AlertasService } from 'src/app/service/alertas.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { EnderecoService } from 'src/app/service/endereco.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
@@ -17,12 +19,20 @@ export class UserEditComponent implements OnInit {
   confirmarSenha: string
   tipoUsuario: string
   listaUsuarios: User [];
+  endereco: Endereco = new Endereco()
+  listaEndereco: Endereco[]
+  idEndereco: number
 
+  key = 'data'
+  reverse = true
+  
   constructor(
+    public enderecoSerivce: EnderecoService,
     public authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    private alertas: AlertasService
+    private alertas: AlertasService,
+    
   ) { }
 
   ngOnInit() {
@@ -35,6 +45,7 @@ export class UserEditComponent implements OnInit {
     this.idUser = this.route.snapshot.params['id']
     this.findByIdUser(this.idUser)
     this.getAllUsuarios()
+    this.getAllEnderecos()
   }
 
   confirmSenha(event: any) {
@@ -77,5 +88,15 @@ export class UserEditComponent implements OnInit {
       this.listaUsuarios = resp
     })
   }
- 
+  getAllEnderecos(){
+    this.enderecoSerivce.getAllEndereco().subscribe((resp: Endereco[]) => {
+      this.listaEndereco = resp
+    })
+  }
+
+  findByIdEndereco(){
+    this.enderecoSerivce.getByIdEndereco(this.idEndereco).subscribe((resp: Endereco) =>{
+      this.endereco = resp
+    })
+  }
 }

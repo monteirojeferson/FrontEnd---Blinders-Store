@@ -4,11 +4,13 @@ import { AuthService } from './../service/auth.service';
 import { User } from './../model/User';
 import { Tema } from './../model/Tema';
 import { TemaService } from './../service/tema.service';
-import { PostagemService } from './../service/postagem.service';
-import { Postagem } from './../model/Postagem';
+import { ProdutoService } from '../service/produtos.service';
+import { Produto } from '../model/Produto';
 import { Router } from '@angular/router';
 import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
+import { CarrinhoService } from '../service/carrinho.service';
+import { Carrinho } from '../model/Carrinho';
 // import { Console } from 'console';
 
 @Component({
@@ -20,15 +22,15 @@ export class ProdutosComponent implements OnInit {
   
   
 
-  postagem: Postagem = new Postagem()
-  produtoSelecionado: Postagem = new Postagem()
-  listaPostagens: Postagem[]
+  postagem: Produto = new Produto()
+  produtoSelecionado: Produto = new Produto()
+  listaProdutos: Produto[]
   tituloPost: string
 
   tema: Tema = new Tema()
   listaTemas: Tema[]
   idTema: number
-  idPostagem: number
+  idProduto: number
   nomeTema: string
 
   user: User = new User()
@@ -43,10 +45,11 @@ export class ProdutosComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private postagemService: PostagemService,
+    private produtoService: ProdutoService,
     private temaService: TemaService,
     public authService: AuthService,
-    private alertas: AlertasService
+    private alertas: AlertasService,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
@@ -57,7 +60,7 @@ export class ProdutosComponent implements OnInit {
     // }
 
     this.getAllTemas()
-    this.getAllPostagens()
+    this.getAllProdutos()
 
     
   }
@@ -74,15 +77,15 @@ export class ProdutosComponent implements OnInit {
     })
   }
 
-  findByIdPostagem(){
-    this.postagemService.getByIdPostagem(this.idPostagem).subscribe((resp: Postagem) =>{
+  findByIdProduto(){
+    this.produtoService.getByIdProduto(this.idProduto).subscribe((resp: Produto) =>{
       this.postagem = resp
     })
   }
 
-  getAllPostagens(){
-    this.postagemService.getAllPostagens().subscribe((resp: Postagem[]) => {
-      this.listaPostagens = resp
+  getAllProdutos(){
+    this.produtoService.getAllProdutos().subscribe((resp: Produto[]) => {
+      this.listaProdutos = resp
     })
   }
 
@@ -95,25 +98,25 @@ export class ProdutosComponent implements OnInit {
   publicar(){
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
-    this.postagem.id = this.idPostagem
+    this.postagem.id = this.idProduto
 
     this.user.id = this.idUser
     this.postagem.usuario = this.user
 
-    this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
+    this.produtoService.postProduto(this.postagem).subscribe((resp: Produto) => {
       this.postagem = resp
-      this.alertas.showAlertSuccess('Postagem realizada com sucesso!')
-      this.postagem = new Postagem()
-      this.getAllPostagens()
+      this.alertas.showAlertSuccess('Produto realizada com sucesso!')
+      this.postagem = new Produto()
+      this.getAllProdutos()
     })
   }
 
-  findByTituloPostagem(){
+  findByTituloProduto(){
     if(this.tituloPost == ''){
-      this.getAllPostagens()
+      this.getAllProdutos()
     } else {
-      this.postagemService.getByNomePostagem(this.tituloPost).subscribe((resp: Postagem[]) => {
-        this.listaPostagens = resp
+      this.produtoService.getByNomeProduto(this.tituloPost).subscribe((resp: Produto[]) => {
+        this.listaProdutos = resp
       })
     }
   }
@@ -129,9 +132,17 @@ export class ProdutosComponent implements OnInit {
   }
 
   selecionarProduto(item:any){
-    console.log(item)
+    
     this.produtoSelecionado = item;
     
   }
+
+  //Adicionar item no carrinho
+  adicionarAoCarrinho(produto: Produto) {
+    const carrinho = new Carrinho(produto)
+    this.carrinhoService.adicionarItemCarrinho(carrinho)
+    this.alertas.showAlertSuccess("Item adicionado ao carrinho")
+  }
+  
 
 }

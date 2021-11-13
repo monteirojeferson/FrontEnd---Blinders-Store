@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
 
     <div class="row">
@@ -10,7 +11,29 @@
           <div class="col-md-10">
   
             <h1 class="text-center">Cadastro</h1>
-  
+
+            <div class="form-group">
+            
+              <mat-label for="texto">Escolha um Endereço ou <a data-dismiss="modal" routerLink='/endereco'>cadastre um novo</a>:
+              </mat-label>
+              <select name="tema" id="endereco" class="form-control" [(ngModel)]='idEndereco' (change)='findByIdEndereco()'>
+                <option *ngFor='let item of listaEndereco' value="{{item.id}}">
+                  {{item.endereco}}, {{item.numero}}, {{item.bairro}}, {{item.cep}}
+                </option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="tipo">Tipo de Usuário</label>
+              <select class="form-control" name="tipo" id="tipo" (change)='tipoUser($event)'>
+                <option>Selecione um tipo de usuário:</option>
+                <option value="normal">Normal</option>
+                <option value="adm">Administrador</option>
+                <option value="estoquista">Estoquista</option>
+              </select>
+              
+            </div>
+
             <div class="form-group">
               <label for="nome">Nome</label>
               <input [(ngModel)]='user.nome' class="form-control" type="text" name="nome" id="nome" placeholder="Seu nome"  >
@@ -22,26 +45,17 @@
             </div>
 
             <div class="form-group">
-              <label for="usuario">Email</label>
+              <label for="email">Email</label>
               <input [(ngModel)]='user.email' class="form-control" type="text" name="email" id="email" placeholder="Seu email">
             </div>
   
 
             <div class="form-group">
-              <label for="usuario">CPF</label>
+              <label for="cpf">CPF</label>
               <input [(ngModel)]='user.cpf' class="form-control" type="text" name="cpf" id="cpf" placeholder="Seu CPF" maxlength="11">
             </div>
 
-            <div class="form-group">
-              <label for="usuario">Endereço</label>
-              <input [(ngModel)]='user.endereco' class="form-control" type="text" name="endereco" id="endereco" placeholder="Endereco">
-            </div>
-
           
-            <!-- <div class="form-group">
-              <label for="foto">Link da Foto</label>
-              <input [(ngModel)]='user.foto' class="form-control" type="text" name="foto" id="foto" placeholder="Link da sua foto">
-            </div> -->
   
             <div class="form-group">
               <label for="senha">Senha</label>
@@ -54,15 +68,7 @@
                 placeholder="Confirme sua senha">
             </div>
   
-            <div class="form-group">
-              <label for="tipo">Tipo de Usuário</label>
-              <select class="form-control" name="tipo" id="tipo" (change)='tipoUser($event)'>
-                <option>Selecione um tipo de usuário:</option>
-                <option value="normal">Normal</option>
-                <option value="adm">Administrador</option>
-                <option value="estoquista">Estoquista</option>
-              </select>
-            </div>
+          
   
             <div class="d-flex justify-content-center">
               <button type="submit" class="btn btn-danger mr-4" routerLink='/entrar'>Cancelar</button>
@@ -74,3 +80,4 @@
       </div>
     </div>
   </div>
+

@@ -1,11 +1,11 @@
-import { AlertasService } from './../service/alertas.service';
-import { AuthService } from './../service/auth.service';
-import { User } from './../model/User';
-import { Tema } from './../model/Tema';
-import { TemaService } from './../service/tema.service';
-import { PostagemService } from './../service/postagem.service';
-import { Postagem } from './../model/Postagem';
-import { Router } from '@angular/router';
+// import { AlertasService } from './../service/alertas.service';
+// import { AuthService } from './../service/auth.service';
+// import { User } from './../model/User';
+// import { Tema } from './../model/Tema';
+// import { TemaService } from './../service/tema.service';
+// import { PostagemService } from '../service/produtos.service';
+// import { Postagem } from '../model/Produto';
+// import { Router } from '@angular/router';
 import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
 

@@ -1,4 +1,5 @@
-import { Postagem } from './Postagem';
+import { Endereco } from './Endereco';
+import { Produto } from './Produto';
 
 export class User{
   public id: number
@@ -7,10 +8,14 @@ export class User{
   public senha: string
   public foto: string
   public tipo: string
+  public cpf: string;
   public email : string;
-	
-	public endereco : string;
-	
-	public cpf: string;
-  public postagem: Postagem[]
+	// public endereco : string;
+  // public bairro : string;
+  // public cidade : string;
+  // public estado : string;
+  // public cep : string;
+  // public numero : number;
+  public endereco: Endereco
+  public produto: Produto[]
 }

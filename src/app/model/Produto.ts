@@ -1,7 +1,7 @@
 import { Tema } from './Tema';
 import { User } from './User';
 
-export class Postagem{
+export class Produto{
   public id: number
   public nome: string
   public  ativo:string;

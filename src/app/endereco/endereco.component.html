@@ -1,0 +1,98 @@
+<div class="container-fluid">
+
+    <div class="row bg-secondary">
+      <div class="col-md-12 text-white">
+  
+  
+        <a routerLink='/home' class="text-white text-left">
+          <i class="fa fa-angle-double-left" aria-hidden="true"></i> início
+        </a>
+  
+        <h1 class="fs-54 text-center">Endereço</h1>
+        <h5 class="fs-18 text-center">Cadastre o endereço aqui</h5>
+  
+        <div class="row d-flex justify-content-center mt-4 mb-5">
+          <div class="col-md-3">
+
+            <div class="form-group">
+              <input [(ngModel)]='endereco.cep' type="text" class="form-control" id="cep" placeholder="CEP" >
+            </div>
+            
+            <div class="form-group">
+                <input [(ngModel)]='endereco.endereco' type="text" class="form-control" value="cep" id="endereco" placeholder="Endereço" >
+              </div>
+
+              <div class="form-group">
+                <input [(ngModel)]='endereco.bairro' type="text" class="form-control" id="bairro" placeholder="Digite o bairro">
+              </div>
+
+              <div class="form-group">
+                <input [(ngModel)]='endereco.numero' type="number" class="form-control" id="numero" placeholder="Digite o numero">
+              </div>
+
+              <div class="form-group">
+                <input [(ngModel)]='endereco.cidade' type="text" class="form-control" id="cidade" placeholder="Digite a cidade">
+              </div>
+
+              <div class="form-group">
+                <input [(ngModel)]='endereco.estado' type="text" class="form-control" id="estado" placeholder="Digite o estado">
+              </div>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-light" (click)='cadastrar()'>Cadastrar</button>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+  </div>
+  
+  <div class="container">
+  
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h2 class="text-center">Todos os Endereços</h2>
+      </div>
+    </div>
+  
+    <div class="row mt-3 mb-5 d-flex justify-content-center">
+      <div class="col-md-12">
+  
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Endereço</th>
+              <th scope="col" >Bairro</th>
+              <th scope="col" >CEP</th>
+              <th scope="col" >Numero</th>
+              <th scope="col" >Cidade</th>
+              <th scope="col" >Estado</th>
+         
+  
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor='let item of listaEndereco'>
+              <th>{{item.id}}</th>
+              <td>{{item.endereco}}</td>
+              <td>{{item.bairro}}</td>
+              <td>{{item.cep}}</td>
+              <td>{{item.numero}}</td>
+              <td>{{item.cidade}}</td>
+              <td>{{item.estado}}</td>
+              <td class="d-flex justify-content-end">
+                <button class="btn btn-info mr-3" [routerLink]="['/endereco-edit', item.id]" >Editar</button>
+                <button class="btn btn-danger" [routerLink]="['/endereco-delete', item.id]" >Apagar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  
+      </div>
+    </div>
+  
+  </div>

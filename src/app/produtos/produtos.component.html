@@ -81,14 +81,14 @@
         <div class="row d-flex justify-content-center mt-5 mb-5">
           <div class="col-md-4">
             <div class="form-group">
-              <input type="text" class="form-control" id="titulo" placeholder="Digite um titulo de postagem para pesquisar" [(ngModel)]='tituloPost' (keyup)='findByTituloPostagem()'>
+              <input type="text" class="form-control" id="titulo" placeholder="Digite o nome de um produto para pesquisar" [(ngModel)]='tituloPost' (keyup)='findByTituloProduto()'>
             </div>
           </div>
         </div>
   
         <div class="card-columns">
           <div class="card text-center"
-          *ngFor='let item of listaPostagens | orderBy : key : reverse; let i = index' id="idPost">
+          *ngFor='let item of listaProdutos | orderBy : key : reverse; let i = index' id="idPost">
             <div class="card-body">
               <h5 class="card-title m-0" style="color: orangered;">{{item.nome}}</h5>
               <!-- <small class="text-muted"> Tipo: {{item.tema.descricao}}</small> -->
@@ -98,6 +98,7 @@
               <!-- <p class="card-text"><small class="text-muted">Quantidade: {{item.qtd}}</small></p>
               <p class="card-text"><small class="text-muted">Descrição {{item.descricao}}</small></p> -->
               <button mat-button color="warn"  data-toggle="modal" data-target="#detalhes" (click)="selecionarProduto(item)" >Detalhes</button>
+              <button mat-button color="warn"  class="btn btn-outline-info border-0 mb-2 " id="botao " (click)="adicionarAoCarrinho(item)">Adicionar ao carrinho</button>
       
             </div>
           </div>
@@ -109,7 +110,7 @@
 
 
         <div class="card-columns">
-          <div class="card text-center" *ngFor='let item of user.postagem | orderBy : key : reverse'>
+          <div class="card text-center" *ngFor='let item of user.produto | orderBy : key : reverse'>
             <div class="card-body">
               <!-- <h5 class="card-title m-0">{{item.titulo}}</h5> -->
               <small class="text-muted"> Tema: {{item.tema.descricao}}</small>
@@ -140,7 +141,7 @@
         </div>
   
         <div class="card-columns" *ngFor='let tema of listaTemas'>
-          <div class="card text-center" *ngFor='let item of tema.postagem | orderBy : key : reverse'>
+          <div class="card text-center" *ngFor='let item of tema.produto | orderBy : key : reverse'>
             <div class="card-body">
               <h5 class="card-title m-0">{{item.nome}}</h5>
               <img src="{{item.imagem}}" alt="Imagem do user" width="80px" height="70px" class="img-fluid rounded-circle">
