@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CarrinhoService } from '../service/carrinho.service';
-import { Carrinho } from '../model/Carrinho';
+import { Carrinho } from '../model/carrinho';
 import { Scroll } from '@angular/router';
 import { Subject } from 'rxjs';
+import { AlertasService } from '../service/alertas.service';
+import { Endereco } from '../model/Endereco';
+import { environment } from 'src/environments/environment.prod';
+import { EnderecoService } from '../service/endereco.service';
 
 
 @Component({
@@ -21,13 +25,22 @@ export class CarrinhoComponent implements OnInit {
   qtdTotal: number = 0
 
   exibirAlerta: boolean =false
+  listaEndereco: Endereco[]
+  idEndereco: number
+  idUser = environment.id
+  endereco: Endereco = new Endereco()
+  
 
-  constructor(private carrinhoService: CarrinhoService) { }
+  constructor(private carrinhoService: CarrinhoService,
+              private alertService: AlertasService,
+              private enderecoService: EnderecoService) { }
 
   
 
   ngOnInit(): void {
     this.totalCarrinho();
+    this.getAllEnderecos()
+    //this.findByIdEndereco();
     window.scroll(0,0)
 
   }
@@ -54,8 +67,19 @@ export class CarrinhoComponent implements OnInit {
   }
 
 exibirMensagem(){
-    alert("Compra realizada com sucesso!")
+    this.alertService.showAlertSuccess("Compra realizada com sucesso!")
     location.assign('/home')
     
+  }
+  getAllEnderecos(){
+    this.enderecoService.getAllEndereco().subscribe((resp: Endereco[]) => {
+      this.listaEndereco = resp
+    })
+  }
+
+  findByIdEndereco(){
+    this.enderecoService.getByIdEndereco(this.idEndereco).subscribe((resp: Endereco) =>{
+      this.endereco = resp
+    })
   }
 }

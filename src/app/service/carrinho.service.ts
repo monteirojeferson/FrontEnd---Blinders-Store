@@ -19,7 +19,8 @@ quantidadeTotal: Subject<number> = new Subject<number>();
 
   adicionarItemCarrinho(itemCarrinho: Carrinho) {
     let ContemNoCarrinho: boolean = false;
-    let carrinhoCriado: Carrinho | undefined;
+    let carrinhoCriado: Carrinho = undefined;
+    
 
     if (this.carrinho.length > 0) {
 
@@ -33,8 +34,8 @@ quantidadeTotal: Subject<number> = new Subject<number>();
     }
 
     if (ContemNoCarrinho) {
-      // carrinhoCriado.quantidade++;
-        itemCarrinho.quantidade++;
+       carrinhoCriado.quantidade++;
+        
     }
     else {
       this.carrinho.push(itemCarrinho);

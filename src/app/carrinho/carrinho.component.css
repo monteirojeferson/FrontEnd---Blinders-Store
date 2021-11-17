@@ -28,7 +28,8 @@ h5 {
 
 .modal-content {
     height: 80vh;
-    background-image: linear-gradient( to right, rgba(114, 169, 241, 0.434) 25%, rgba(210, 226, 118, 0.434), rgba(228, 108, 108, 0.434));
+    background-color: #ecf0f1
+    /* background-image: linear-gradient( to right, rgba(114, 169, 241, 0.434) 25%, rgba(210, 226, 118, 0.434), rgba(228, 108, 108, 0.434)); */
 }
 
 .modal-header {

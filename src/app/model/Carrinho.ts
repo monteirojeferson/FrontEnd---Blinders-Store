@@ -11,8 +11,8 @@ export class Carrinho {
 
 
 constructor(produto: Produto){
-    this.idProduto = produto.id
-    this.nomeProduto = produto.nome
+    this.idProduto = produto.idProduto
+    this.nomeProduto = produto.nomeProduto
     this.descricao = produto.descricao
     this.preco = produto.preco
     this.quantidade = produto.qtd

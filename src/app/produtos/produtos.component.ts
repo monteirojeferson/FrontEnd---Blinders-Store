@@ -6,7 +6,7 @@ import { Tema } from './../model/Tema';
 import { TemaService } from './../service/tema.service';
 import { ProdutoService } from '../service/produtos.service';
 import { Produto } from '../model/Produto';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
 import { CarrinhoService } from '../service/carrinho.service';
@@ -25,6 +25,10 @@ export class ProdutosComponent implements OnInit {
   postagem: Produto = new Produto()
   produtoSelecionado: Produto = new Produto()
   listaProdutos: Produto[]
+
+  listaProdutosResetada: Produto[]
+
+  produto: Produto = new Produto;
   tituloPost: string
 
   tema: Tema = new Tema()
@@ -49,6 +53,7 @@ export class ProdutosComponent implements OnInit {
     private temaService: TemaService,
     public authService: AuthService,
     private alertas: AlertasService,
+    private _activeRoute: ActivatedRoute,
     private carrinhoService: CarrinhoService
   ) { }
 
@@ -58,10 +63,30 @@ export class ProdutosComponent implements OnInit {
     // if(environment.token == ''){
     //   this.router.navigate(['/entrar'])
     // }
-
-    this.getAllTemas()
-    this.getAllProdutos()
-
+ // toda mudança de url cai nesse método
+ this._activeRoute.queryParams.subscribe(params=>
+  {
+    console.log('Mudou a rota');
+    let parametroCategoria = null;
+    if(params.idCategoria)
+    {
+      parametroCategoria = parseInt(params.idCategoria);
+    }
+    //se não tiver o id na url ele busca por categoria
+    // if(parametroCategoria)
+    // {
+    //   this.buscaProdutosPeloCategoriaId(parametroCategoria);
+    // }
+    //se não tiver 
+    else
+    {
+      this.findAllProdutos();
+    }
+    
+  });
+    this.getAllTemas();
+    this.getAllProdutos();
+    // this.findAllProdutos();
     
   }
 
@@ -94,11 +119,16 @@ export class ProdutosComponent implements OnInit {
       this.user = resp
     })
   }
-
+  findAllProdutos(){
+    this.produtoService.getAllProdutos().subscribe((resp: Produto[])=>{
+      this.listaProdutos = resp;
+      
+    })
+  }
   publicar(){
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
-    this.postagem.id = this.idProduto
+    this.postagem.idProduto = this.idProduto
 
     this.user.id = this.idUser
     this.postagem.usuario = this.user
@@ -139,10 +169,14 @@ export class ProdutosComponent implements OnInit {
 
   //Adicionar item no carrinho
   adicionarAoCarrinho(produto: Produto) {
+    
     const carrinho = new Carrinho(produto)
     this.carrinhoService.adicionarItemCarrinho(carrinho)
-    this.alertas.showAlertSuccess("Item adicionado ao carrinho")
+    this.alertas.showAlertInfo("Item adicionado ao carrinho")
   }
-  
+  listarTodos()
+  {
+    this.router.navigate(['/produtos']);
+  }
 
 }
