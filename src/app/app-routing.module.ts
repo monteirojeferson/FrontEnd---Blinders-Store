@@ -15,7 +15,7 @@ import { EntrarComponent } from './entrar/entrar.component';
 import { HomeComponent } from './home/home.component';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { TemaComponent } from './tema/tema.component';
-
+import { CkeckoutComponent } from './ckeckout/ckeckout.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'produtos', pathMatch: 'full'},
@@ -35,7 +35,8 @@ const routes: Routes = [
   {path:'endereco', component:EnderecoComponent},
   {path:'endereco-edit/:id', component:EnderecoEditComponent},
   {path:'endereco-delete/:id', component:EnderecoDeleteComponent},
-  {path:'carrinho', component:CarrinhoComponent}
+  {path:'carrinho', component:CarrinhoComponent},
+  {path:'checkout', component:CkeckoutComponent}
 ];
 
 @NgModule({

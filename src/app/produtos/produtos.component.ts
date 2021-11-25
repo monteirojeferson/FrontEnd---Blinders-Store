@@ -21,6 +21,10 @@ import { Carrinho } from '../model/Carrinho';
 export class ProdutosComponent implements OnInit {
   
   
+  idCliente: string = localStorage.getItem('idCliente')
+  idClienteNumber = parseInt(this.idCliente);
+  usuario: User = new User;
+  produto:Produto = new Produto;
 
   postagem: Produto = new Produto()
   produtoSelecionado: Produto = new Produto()
@@ -28,7 +32,7 @@ export class ProdutosComponent implements OnInit {
 
   listaProdutosResetada: Produto[]
 
-  produto: Produto = new Produto;
+  //produto: Produto = new Produto;
   tituloPost: string
 
   tema: Tema = new Tema()

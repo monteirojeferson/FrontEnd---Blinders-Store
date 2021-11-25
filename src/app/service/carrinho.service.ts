@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Carrinho } from '../model/Carrinho';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,17 @@ precoTotal: Subject<number> = new Subject<number>();
 
 quantidadeTotal: Subject<number> = new Subject<number>();
 
-  constructor() { }
+todosProdutos: Subject<string> = new Subject<string>();
+
+  constructor(private http: HttpClient) { }
 
 
-
+  // getCompra(itemCarrinho: Carrinho){
+  //   this.adicionarItemCarrinho(itemCarrinho);
+  // }
+  getAllCompra(): Observable<Carrinho[]>{
+    return this.http.get<Carrinho[]>('http://localhost:8080/carrinho')
+  }
   adicionarItemCarrinho(itemCarrinho: Carrinho) {
     let ContemNoCarrinho: boolean = false;
     let carrinhoCriado: Carrinho = undefined;
@@ -48,28 +56,34 @@ quantidadeTotal: Subject<number> = new Subject<number>();
 
     let valorTotalCarrinho: number = 0;
     let quantidadeTotalCarrinho: number = 0;
+    let produtos: string = '';
 
     for (let item of this.carrinho) {
       valorTotalCarrinho += item.quantidade * item.preco;
       quantidadeTotalCarrinho += item.quantidade;
+      produtos +=item.nomeProduto;
     }
 
     this.precoTotal.next(valorTotalCarrinho);
     this.quantidadeTotal.next(quantidadeTotalCarrinho);
+    this.todosProdutos.next(produtos);
 
-    this.detalheCarrinho(valorTotalCarrinho, quantidadeTotalCarrinho);
+    this.detalheCarrinho(valorTotalCarrinho, quantidadeTotalCarrinho,produtos);
   }
 
 
-  detalheCarrinho(valorTotalCarrinho: number, quantidadeTotalCarrinho: number) {
+  detalheCarrinho(valorTotalCarrinho: number, quantidadeTotalCarrinho: number, produtos:string) {
 
     console.log('Contém no carrinho');
+
     for (let i of this.carrinho) {
       const subPrecoTotal = i.quantidade * i.preco;
-      console.log(`nome: ${i.preco}, quantidade=${i.quantidade}, preço=${i.preco}, total=${subPrecoTotal}`);
+      let listaProd = i.nomeProduto;
+
+      console.log(`nome: ${listaProd}, quantidade=${i.quantidade}, preço=${i.preco}, total=${subPrecoTotal}`);
     }
 
-    console.log(`PrecoTotal: ${valorTotalCarrinho.toFixed(2)}, QuantidadeToral: ${quantidadeTotalCarrinho}`);
+    console.log(`PrecoTotal: ${valorTotalCarrinho.toFixed(2)}, QuantidadeTotal: ${quantidadeTotalCarrinho}`);
     console.log('----');
   }
 

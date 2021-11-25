@@ -33,6 +33,7 @@ import { EnderecoEditComponent } from './edit/endereco-edit/endereco-edit.compon
 import { EnderecoDeleteComponent } from './delete/endereco-delete/endereco-delete.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import {MatIconModule} from '@angular/material/icon';
+import { CkeckoutComponent } from './ckeckout/ckeckout.component';
 
 
 
@@ -58,6 +59,7 @@ import {MatIconModule} from '@angular/material/icon';
     EnderecoEditComponent,
     EnderecoDeleteComponent,
     CarrinhoComponent,
+    CkeckoutComponent,
    
   ],
   imports: [

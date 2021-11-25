@@ -74,17 +74,11 @@
             
                         <mat-label for="texto">Escolha a forma de pagamento:
                         </mat-label>
-                        <select name="pagamento" id="pagamento" class="form-control" >
-                          <option >
-                          Pix
-                          </option>
-                          <option >
-                            Boleto
-                            </option>
-                            <option >
-                                Dinheiro
-                                </option>
-                        </select>
+                   
+                        <!-- <button mat-button color="warn"  data-toggle="modal" data-target="#detalhes" (click)="selecionarProduto(produto)" >Detalhes</button> -->
+                        <!-- <button mat-button color="warn"  data-toggle="modal" data-target="#compraFinal" >Detalhes</button> -->
+                        <a data-toggle="modal" data-target="#modalCompra" class="btn  w-100 mt-2">Cartão de crédito</a>
+                        <a data-toggle="modal" data-target="#modalCompra" class="btn  w-100 my-2">Boleto Bancário</a>
                       </div>
                    
                 </div>
@@ -94,59 +88,154 @@
                 </div>
             </div>
         </div>
-        <!-- -------------------------------------------MOBILE----------------------------------- -->
-        <div class="modal-dialog modal-dialog-centered mobile">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5>Carrinho de Compras</h5>
-                    <button type="button" class="close mr-2 btn-close" data-dismiss="modal" aria-label="Close">
-                            <i class="fas fa-times"></i>
-                        </button>
-                </div>
-                <div class="modal-body " style="overflow: auto">
-                    <div class="card ">
-                        <div class="row  mt-2 mr-2" *ngFor=" let item of carrinho ">
-                            <div class="col-4">
-                                <img src="{{item.imagem}}" class="img-fluid" alt="...">
-                            </div>
-                            <div class="col-8">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <h5 class="">{{item.nomeProduto}}</h5>
-                                        <p class="card-text descricao ">{{item.descricao}}</p>
-                                    </div>
-                                    <div class="col-4 p-0">
-                                        <div class="text-center">
-                                            <a class="btn" (click)="diminuirQuantidade(item) "><i  class="fas fa-caret-down" title="Diminuir a quantidade" ></i></a> {{item.quantidade}}
-                                            <a class="btn" (click)="adicionarQuantidade(item) "><i class="fas fa-caret-up" title="Aumentar a quantidade"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row d-flex justify-content-around">
-                                    <div class="col-6">
-                                        <p class="card-text">R{{item.preco | currency}}</p>
-                                    </div>
-                                    <div class="col-6 text-right">
-                                        <a class="btn excluir" title="Remover item" (click)="remover(item)">Excluir                                               
-                                            </a>
-                                    </div>
-                                </div>
+
+<!-- Modal compraFinal -->
+<div class="modal fade" id="compraFinal" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title" id="TituloModalCentralizado" style="font-weight: bold; color: orangered;">Detalhes</h3>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      
+
+       
+        <div class="card box2 shadow-sm">
+            <div class="d-flex align-items-center justify-content-between p-md-5 p-4"> <span
+                    class="h5 fw-bold m-0">Métodos de Pagamento</span>
+                <div class="btn btn-primary bar"></div>
+            </div>
+       
+            <mat-tab-group>
+                <mat-tab label="Cartão de crédito">  <form action="">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex flex-column px-md-5 px-4 mb-4"> 
+                                <div class="inputWithIcon"> <input class="form-control" type="text"
+                                        value=""> <span class=""> <img id="imgVisa"
+                                            src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png"
+                                            alt=""></span> </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column ps-md-5 px-md-0 px-4 mb-4"> <span>Data <span class="ps-1">
+                                        Expedição </span></span>
+                                <div class="inputWithIcon"> <input type="text" class="form-control" value=""> </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column pe-md-5 px-md-0 px-4 mb-4"> <span>Código CVV</span>
+                                <div class="inputWithIcon"> <input type="password" class="form-control" value="">  </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex flex-column px-md-5 px-4 mb-4"> <span>Nome completo</span>
+                                <div class="inputWithIcon"> <input class="form-control text-uppercase" type="text"
+                                        value="">  </div>
+                            </div>
+                        </div>
+                        <div class="col-12 px-md-5 px-4 mt-3">
+                            <div class="btn btn-primary w-100"><a href="" style="color: #ebc219">Pagar</a></div>
+                        </div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col text-left ml-3">
-                        <p>Total:</p>
-                    </div>
-                    <div class="col text-right mr-3">
-                        <p>R{{ totalDoCarrinho | currency }}</p>
-                    </div>
-                </div>
-               
-            </div>
-            
+                </form> </mat-tab>
+                <mat-tab label="Pix"> Content 2 </mat-tab>
+                <mat-tab label="Boleto"> Content 3 </mat-tab>
+              </mat-tab-group>
+              
+
+          
         </div>
+        <div class="card box1 shadow-sm p-md-5 p-md-5 p-4">
+            <div class="fw-bolder mb-4"></div>
+            <div class="d-flex flex-column">
+                <div class="d-flex align-items-center justify-content-between text"> <span class="">Desconto</span>
+                    <span class="fas fa-dollar-sign"><span class="ps-1">00,00</span></span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between text mb-4"> <span>Total</span> <span
+                        class="fas fa-dollar-sign"><span class="ps-1">00,00</span></span> </div>
+                <div class="border-bottom mb-4"></div>
+                <div class="d-flex flex-column mb-4"> <span class="far fa-file-alt text"><span class="ps-2">Protocolo
+                            :</span></span> <span class="ps-3">SN8478042099</span> </div>
+                <div class="d-flex flex-column mb-5"> <span class="far fa-calendar-alt text"><span class="ps-2">Data
+                            pagamento:</span></span> <span class="ps-3">Hoje</span> </div>
+            </div>
+        </div>
+      
+     
+
+      
     </div>
+ 
+
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+
+    </div>
+  </div>
 </div>
+</div>
+
+<div >
+    <div >
+        <!-- <div class="row">
+            <div class="col-md-6">
+                
+                <div class="card shadow border-0">
+                 
+                    <p >Nome: {{usuario.nome}}</p>
+                    <h4>Frete</h4>
+                    <form class="mt-3 frete"> 
+                      <INPUT TYPE="RADIO" NAME="OPCAO" VALUE="padrao" checked> Padrão (R$22,00)  
+                    </form>  
+                    <div  *ngFor=" let produto of carrinho ">
+                        <h4 class="my-5 ml-3">Produto</h4>
+      
+                               
+                                <img src="{{produto.imagem}}" class="card-img" >
+                            
+      
+                                  <h6 >{{produto.nomeProduto}}</h6>
+                                  <p id="descricao" class="card-text">{{produto.descricao}}</p>
+                                  <p >R{{produto.preco | currency}}</p>
+                                <
+                              </div>
+                              <p >{{produto.nomeProduto}}</p>
+                              <p ><b>Total a pagar</b> R{{produto.preco + 22| currency}}</p>
+              
+                     
+                   
+                    </div>
+                </div>  
+          
+          
+        </div>
+    </div> -->
+
+
+
+
+  <div class="modal fade" id="modalCompra"  role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="row">
+            <div class="col-12">
+              <h3>Obrigado por comprar ❤️</h3>
+              <h4>enviamos uma confirmação para o seu email.</h4>
+            </div>
+          </div>
+          <button type="buttun" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
